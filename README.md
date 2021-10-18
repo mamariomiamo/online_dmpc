@@ -43,6 +43,7 @@ git submodule init && git submodule update
 
 2. Build the project
 ```
+cd cpp
 mkdir build
 cd build
 cmake ..
