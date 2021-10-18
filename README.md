@@ -62,7 +62,7 @@ All the vehicles reached their goals!
 Writing solution to text file...
 ```
 
-5. The generated simulation data is in `cpp/results/trajectories.txt`. You can run the MATLAB script `plot_results.m` for a 3D visualization of the generated trajectories.
+5. The generated simulation data is in `cpp/results/trajectories.txt`. You can run the MATLAB script `cpp/results/plot_results.m` for a 3D visualization of the generated trajectories.
 
 ### Running your own scenarios
 The entry point of the code is `src/main.cpp`. If you want to run your own transition scenarios, or play around with the (many) hyperparameters of the algorithm, the main configuration file is in `cpp/config/config.json`. You can find an explanation of each hyperparameter in `cpp/config/help.txt`. 
