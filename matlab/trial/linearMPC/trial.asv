@@ -1,0 +1,25 @@
+%% triple integrator dynamic system
+% p_dot = v
+% v_dot = a
+% a_dot = j
+
+
+
+dt = 0.2;
+
+% P = Tp * J + Bp
+% V = Tv * J + Bv
+% A = Ta * J + Ba
+% Prediction horizon
+%19 intervals, index from 0,1,2, ... 19
+K=20 %prediction horizon
+Tp = zeros(K);
+Tv = zeros(K);
+Ta = zeros(K);
+
+%% A = Ta * J + Ba
+for i=1:K
+    Ta(i,1:i) = ones(1,i)*dt;
+end
+
+%%

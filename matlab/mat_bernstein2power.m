@@ -1,6 +1,9 @@
 function Beta = mat_bernstein2power(n, l, dim)
 % Converts a polynomial in the bernstein basis to a polynomial in the
 % regular power basis [1 t t^2 ... t^n]
+% n is order of bezier (5) thus 6*6 matrix
+% l is segments of bezier (3)
+% dim is dimension (3D)
 delta = zeros(n+1, n+1);
 for k = 0:n
    for i = k:n

@@ -35,8 +35,8 @@ S_obs = s_obs*[zeros(3*(k_hor-spd_o), 3*k_hor);
 S_repel = s_repel*[eye(3*spd_r) zeros(3*spd_r, 3*(k_hor-spd_r));
                    zeros(3*(k_hor-spd_r), 3*k_hor)];
    
-Phi = Lambda.pos*Gamma*Beta;
-Phi_vel = Lambda.vel*Gamma*Beta;
+Phi = Lambda.pos*Gamma*Beta; %% ??? how is this derived
+Phi_vel = Lambda.vel*Gamma*Beta; %% Gamma is sampling from Bezier, Beta is BezierToPolynomial
 H_free = Phi'*S_free*Phi;
 H_obs = Phi'*S_obs*Phi;
 H_repel = Phi'*S_repel*Phi;
@@ -53,6 +53,7 @@ Rho_repel = S_repel*Phi;
 
 % We can also construct the matrix that will then be multiplied by the
 % initial condition -> X0'*A0'*S*Lambda*Gamma*Beta
+% f is the gradient term to be passed into QP solver
 mat_f_x0_free = A0.pos'*S_free*Lambda.pos*Gamma*Beta;
 mat_f_x0_obs = A0.pos'*S_obs*Lambda.pos*Gamma*Beta;
 mat_f_x0_repel = A0.pos'*S_repel*Lambda.pos*Gamma*Beta;

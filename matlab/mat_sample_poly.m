@@ -1,9 +1,9 @@
 function T_sample_poly = mat_sample_poly(T_segment, t_vec, dim, l)
 % Create a cell array Tau with the appropriate samples 
 % to be taken from each segment
-T_final = l*T_segment;
-Tau{l} = [];
-for k = 1:length(t_vec)
+T_final = l*T_segment; % 3seconds final time = segment_number * time_per_segment
+Tau{l} = []; % 3 cells
+for k = 1:length(t_vec) % Horizon: 16 steps
     if abs(t_vec(k) - T_final) < 1e-4
        segment = l;
        t = T_segment;

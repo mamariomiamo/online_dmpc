@@ -23,10 +23,10 @@ ndim = 3;
 % Time settings and variables
 T = 20;          % simulation duration
 h = 0.2;         % time step between MPC updates
-tk = 0:h:T;      % coarse discrete time base
+tk = 0:h:T;      % coarse discrete time base: MPC time steps
 K = T/h + 1;     % number of time steps to simulate
-Ts = 0.01;       % send h/Ts cmds in-between MPC updates 
-t = 0:Ts:T;      % interpolated time vector
+Ts = 0.01;       % send h/Ts cmds in-between MPC updates: 20 commands
+t = 0:Ts:T;      % interpolated time vector: Global time steps
 k_hor = 16;      % horizon length - duration of (k_hor-1)*h sec
 T_segment = 1.0; % fixed time length of each Bezier segment
 
