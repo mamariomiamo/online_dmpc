@@ -6,11 +6,19 @@ figure(1)
 colors = distinguishable_colors(N);
 % set(gcf, 'Position', get(0, 'Screensize'));
 set(gcf,'currentchar',' ')
+t=0:0.1:3*pi;
+x=1.5*sin(t);
+y=1.5*cos(t);
+z=ones(size(t));
+plot3(x,y,z);
+pause(5);
 while get(gcf,'currentchar')==' '
+    view(3)
     for i = 1:N
     h_line(i) = animatedline('LineWidth', 2, 'Color', colors(i,:), 'LineStyle', ':');
     end
-    for k = 1:K
+    for k = 1:K-50
+        pause(0.1);
         for i = 1:N_cmd
             if k ~= 1
                 delete(h_pos(i))
@@ -43,6 +51,32 @@ while get(gcf,'currentchar')==' '
     clf
 end
 
+%% For inter-agent distance
+figure(4)
+dist_collision = [];
+K=101
+t=1:1:K;
+for i=1:K
+    for agent=1:N
+        for j=1:N
+                dist_collision(agent,j,i) = norm(pos_k_i(:,i,agent)-pos_k_i(:,i,j));
+        end
+    end
+end
+lines =0;
+name = [];
+for i=1:N
+    hold on;
+    for j=1:N
+        if i<j
+        lines=lines+1;
+        p_handle(i) = plot(t,reshape(dist_collision(i,j,:),[1,K]),'LineWidth',1.5);
+        name = [name; sprintf('dist between %d and %d',i,j)];
+        end
+    end
+end
+title('Inter-agent distance against time stamp');
+legend(name);
 %% FOR 3D FIGURE
 figure(2)
 [x,y,z] = meshgrid(-5:0.2:5);
